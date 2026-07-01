@@ -1,3 +1,6 @@
+import * as dns from "dns";
+dns.setServers(["1.1.1.1", "8.8.8.8", "8.8.4.4"]);
+
 import express from "express";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
@@ -10,41 +13,54 @@ import chatRoutes from "./routes/chat.route.js";
 
 import { connectDB } from "./lib/db.js";
 
-
 const app = express();
-const PORT = process.env.PORT;
+const allowedOrigins =
+  process.env.NODE_ENV === "production"
+    ? ["https://bhashashikho0409.onrender.com"]
+    : ["http://localhost:5173"];
+const PORT = process.env.PORT || 5001;
 
 const __dirname = path.resolve();
 
-app.use(
-  cors({
-    origin: "https://bhashashikho0409.onrender.com",
-    credentials: true, // allow frontend to send cookies
-  })
-);
+// middleware
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 
 app.use(express.json());
 app.use(cookieParser());
 
+// routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/chat", chatRoutes);
 
+// connect DB FIRST
+//connectDB();
+
+
+// serve frontend (ONLY ONCE)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
   });
 }
-
-app.use(express.static(path.join(__dirname,"/frontend/dist")));
-
-app.get('*',(_,res)=>{
-  res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"))
-})
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  connectDB();
+app.get("/", (req, res) => {
+  res.send("Backend working 🚀");
 });
+
+const startServer = async () => {
+  try {
+    await connectDB(); // DB FIRST
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  } catch (err) {
+    console.log("Server start error:", err);
+  }
+};
+
+startServer();

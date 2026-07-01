@@ -44,11 +44,11 @@ const Navbar = () => {
           {/* TODO */}
           <ThemeSelector />
 
-          <div className="avatar">
-            <div className="w-9 rounded-full">
-              <img src={authUser?.profilePic} alt="User Avatar" rel="noreferrer" />
-            </div>
-          </div>
+          <Link to="/profile" className="avatar">
+  <div className="w-9 rounded-full">
+    <img src={authUser?.profilePic} alt="" rel="noreferrer" />
+  </div>
+</Link>
 
           {/* Logout button */}
           <button className="btn btn-ghost btn-circle" onClick={logoutMutation}>
