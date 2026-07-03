@@ -143,10 +143,6 @@ The app will be available at `http://localhost:5173`.
 | Video Calls | Start a video call directly from a chat, share a join link |
 | Theming | Multiple color themes, persisted via Zustand |
 
-## API Documentation
-
-Full API reference available in [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
-
 ## Available Scripts
 
 **Backend** (`backend/package.json`)
@@ -161,7 +157,25 @@ npm run build    # Production build (outputs to /dist)
 npm run preview  # Preview the production build locally
 ```
 
+## Future Enhancements
+
+Planned improvements to make the platform more complete and production-ready:
+
+- **Group Video Calls** — extend beyond 1-on-1 calls to support multiple participants in a single call room
+- **Real-time Notifications** — currently notifications require a page refresh/refetch; add Socket.io or Stream's real-time events so friend requests and messages appear instantly
+- **Message Search & Chat History Export** — allow users to search past conversations
+- **Read Receipts & Online Status** — show when a message has been seen, and live online/offline indicators for friends
+- **Push Notifications** — browser/mobile push notifications for new messages and friend requests
+- **Language Proficiency Levels** — let users specify skill level (beginner/intermediate/fluent) for both native and learning languages, improving match quality
+- **Advanced Matching Algorithm** — recommend users based on shared interests, timezone overlap, or mutual connections, not just language pairing
+- **Block & Report Users** — safety features for a public-facing language exchange platform
+- **Email Verification & Password Reset** — currently signup/login has no email confirmation or forgot-password flow
+- **Rate Limiting & Input Sanitization** — harden API routes against abuse and injection attacks
+- **Unit & Integration Tests** — add test coverage (Jest/Vitest + Supertest) for both frontend and backend
+- **Mobile App** — React Native version for iOS/Android
+- **Accessibility Improvements** — better screen-reader support (alt text, ARIA labels) across components
+- **Admin Dashboard** — for moderating users, viewing platform analytics, and managing reported content
+
 ## License
 
-This project is open source and available for learning purposes.
-
+This is a personal project. All rights reserved — not licensed for reuse or redistribution.
