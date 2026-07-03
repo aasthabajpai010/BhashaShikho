@@ -16,7 +16,7 @@ import { connectDB } from "./lib/db.js";
 const app = express();
 const allowedOrigins =
   process.env.NODE_ENV === "production"
-    ? ["https://bhashashikho0409.onrender.com"]
+    ? ["https://bhashashikho.vercel.app/"]
     : ["http://localhost:5173"];
 const PORT = process.env.PORT || 5001;
 
