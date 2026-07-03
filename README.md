@@ -143,6 +143,10 @@ The app will be available at `http://localhost:5173`.
 | Video Calls | Start a video call directly from a chat, share a join link |
 | Theming | Multiple color themes, persisted via Zustand |
 
+## API Documentation
+
+Full API reference available in [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
+
 ## Available Scripts
 
 **Backend** (`backend/package.json`)
