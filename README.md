@@ -4,6 +4,13 @@
   A real-time language exchange platform where learners connect, chat, and video call with native speakers around the world.
 </p>
 
+<p align="center">
+  🔗 <strong><a href="https://bhashashikho.vercel.app">Live Demo</a></strong> &nbsp;|&nbsp;
+  ⚙️ <strong><a href="https://bhashashikho-backend.onrender.com">Backend API</a></strong>
+</p>
+
+> ℹ️ **Note:** The backend runs on Render's free tier and is kept awake via periodic uptime monitoring, so cold-start delays are minimized. In the rare case of a delay, the first request may take a few seconds longer while the server responds.
+
 ## Highlights
 
 - 🌐 Real-time Messaging with Typing Indicators & Reactions
@@ -129,6 +136,19 @@ The app will be available at `http://localhost:5173`.
 2. Create a new app in the Stream dashboard
 3. Copy the **API Key** and **API Secret** into your backend `.env`
 4. Copy the same **API Key** into your frontend `.env` (as `VITE_STREAM_API_KEY`)
+
+## Deployment
+
+This project is deployed using:
+
+| Layer | Platform | URL |
+|---|---|---|
+| Frontend | [Vercel](https://vercel.com) | [bhashashikho.vercel.app](https://bhashashikho.vercel.app) |
+| Backend | [Render](https://render.com) | [bhashashikho-backend.onrender.com](https://bhashashikho-backend.onrender.com) |
+| Database | [MongoDB Atlas](https://www.mongodb.com/atlas) | — |
+| Uptime Monitoring | [UptimeRobot](https://uptimerobot.com) | Pings the backend every 5 minutes to reduce cold-start delays |
+
+**Environment variables** for both services are configured directly in the Render and Vercel dashboards (not committed to the repo — see `.env.example` files for the required keys).
 
 ## Features Overview
 
