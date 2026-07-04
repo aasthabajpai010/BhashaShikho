@@ -63,6 +63,10 @@ BhashaShikho/
     └── .env
 ```
 
+## Architecture
+
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for system diagrams and request flow visualizations.
+
 ## Getting Started
 
 ### Prerequisites
