@@ -57,7 +57,51 @@ flowchart LR
 
 ---
 
-## 2. Request Flow — Login
+## 2. Database Schema
+
+Entity relationship diagram based on the `User` and `FriendRequest` Mongoose models.
+
+```mermaid
+erDiagram
+    USER ||--o{ FRIENDREQUEST : sends
+    USER ||--o{ FRIENDREQUEST : receives
+    USER }o--o{ USER : "friends with"
+
+    USER {
+        ObjectId _id PK
+        string fullName
+        string email UK
+        string password
+        string bio
+        string profilePic
+        string nativeLanguage
+        string learningLanguage
+        string location
+        boolean isOnboarded
+        ObjectId_array friends FK
+        date createdAt
+        date updatedAt
+    }
+
+    FRIENDREQUEST {
+        ObjectId _id PK
+        ObjectId sender FK
+        ObjectId recipient FK
+        string status
+        date createdAt
+        date updatedAt
+    }
+```
+
+**Notes:**
+- `USER.friends` stores an array of `ObjectId` references back to other `USER` documents — this is what powers the many-to-many "friends with" relationship.
+- `FRIENDREQUEST.status` is an enum: `"pending"` or `"accepted"`. There is no separate `"rejected"` state — a declined request is simply left as `"pending"` or removed.
+- `FRIENDREQUEST.sender` and `.recipient` both reference `USER._id`, which is why the diagram shows two relationships (`sends` and `receives`) between the same two entities.
+- `email` is unique (`UK`) and enforced at the schema level via Mongoose's `unique: true`.
+
+---
+
+## 3. Request Flow — Login
 
 Step-by-step path of a single login request, from click to response.
 
@@ -96,7 +140,7 @@ sequenceDiagram
 
 ---
 
-## 3. Request Flow — Sending a Friend Request
+## 4. Request Flow — Sending a Friend Request
 
 ```mermaid
 sequenceDiagram
@@ -126,7 +170,7 @@ sequenceDiagram
 
 ---
 
-## 4. Request Flow — Starting a Video Call
+## 5. Request Flow — Starting a Video Call
 
 ```mermaid
 sequenceDiagram
