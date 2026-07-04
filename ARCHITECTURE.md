@@ -106,6 +106,22 @@ erDiagram
 Step-by-step path of a single login request, from click to response.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {
+  'actorBkg': '#26215C',
+  'actorTextColor': '#FFFFFF',
+  'actorBorder': '#7F77DD',
+  'actorLineColor': '#7F77DD',
+  'signalColor': '#FFFFFF',
+  'signalTextColor': '#FFFFFF',
+  'labelBoxBkgColor': '#26215C',
+  'labelBoxBorderColor': '#7F77DD',
+  'labelTextColor': '#FFFFFF',
+  'loopTextColor': '#FFFFFF',
+  'noteBkgColor': '#412402',
+  'noteTextColor': '#FFFFFF',
+  'noteBorderColor': '#FAC775',
+  'sequenceNumberColor': '#000000'
+}}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 User (Browser)
@@ -143,6 +159,22 @@ sequenceDiagram
 ## 4. Request Flow — Sending a Friend Request
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {
+  'actorBkg': '#26215C',
+  'actorTextColor': '#FFFFFF',
+  'actorBorder': '#7F77DD',
+  'actorLineColor': '#7F77DD',
+  'signalColor': '#FFFFFF',
+  'signalTextColor': '#FFFFFF',
+  'labelBoxBkgColor': '#26215C',
+  'labelBoxBorderColor': '#7F77DD',
+  'labelTextColor': '#FFFFFF',
+  'loopTextColor': '#FFFFFF',
+  'noteBkgColor': '#412402',
+  'noteTextColor': '#FFFFFF',
+  'noteBorderColor': '#FAC775',
+  'sequenceNumberColor': '#000000'
+}}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 User (Browser)
@@ -173,6 +205,22 @@ sequenceDiagram
 ## 5. Request Flow — Starting a Video Call
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {
+  'actorBkg': '#26215C',
+  'actorTextColor': '#FFFFFF',
+  'actorBorder': '#7F77DD',
+  'actorLineColor': '#7F77DD',
+  'signalColor': '#FFFFFF',
+  'signalTextColor': '#FFFFFF',
+  'labelBoxBkgColor': '#26215C',
+  'labelBoxBorderColor': '#7F77DD',
+  'labelTextColor': '#FFFFFF',
+  'loopTextColor': '#FFFFFF',
+  'noteBkgColor': '#412402',
+  'noteTextColor': '#FFFFFF',
+  'noteBorderColor': '#FAC775',
+  'sequenceNumberColor': '#000000'
+}}}%%
 sequenceDiagram
     autonumber
     participant U as 👤 User (Browser)
