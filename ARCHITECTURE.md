@@ -9,7 +9,7 @@ This document visualizes how requests move through the system. Both diagrams bel
 High-level view of how the pieces are connected and hosted.
 
 ```mermaid
-flowchart TB
+flowchart LR
     subgraph Client
         A[Browser]
     end
@@ -40,12 +40,12 @@ flowchart TB
 
     I[UptimeRobot] -.->|Pings every 5 min| D
 
-    classDef client fill:#F1EFE8,stroke:#888780,stroke-width:1px,color:#2C2C2A
-    classDef frontend fill:#EEEDFE,stroke:#7F77DD,stroke-width:1px,color:#26215C
-    classDef backend fill:#E1F5EE,stroke:#1D9E75,stroke-width:1px,color:#04342C
-    classDef database fill:#E6F1FB,stroke:#378ADD,stroke-width:1px,color:#042C53
-    classDef external fill:#FAECE7,stroke:#D85A30,stroke-width:1px,color:#4A1B0C
-    classDef monitor fill:#FAEEDA,stroke:#BA7517,stroke-width:1px,color:#412402
+    classDef client fill:#D3D1C7,stroke:#444441,stroke-width:2px,color:#000000
+    classDef frontend fill:#AFA9EC,stroke:#26215C,stroke-width:2px,color:#000000
+    classDef backend fill:#5DCAA5,stroke:#04342C,stroke-width:2px,color:#000000
+    classDef database fill:#85B7EB,stroke:#042C53,stroke-width:2px,color:#000000
+    classDef external fill:#F0997B,stroke:#4A1B0C,stroke-width:2px,color:#000000
+    classDef monitor fill:#FAC775,stroke:#412402,stroke-width:2px,color:#000000
 
     class A client
     class B,C frontend
@@ -69,26 +69,26 @@ sequenceDiagram
     participant B as 🖥️ Backend
     participant M as 🗄️ MongoDB Atlas
 
-    rect rgb(238, 237, 254)
+    rect rgb(175, 169, 236)
     U->>F: Submits login form
     F->>B: POST /api/auth/login (email, password)
     end
-    rect rgb(225, 245, 238)
+    rect rgb(93, 202, 165)
     B->>M: User.findOne({ email })
     M-->>B: Returns user document
     B->>B: bcrypt.compare(password, hash)
     B->>B: jwt.sign({ userId })
     end
-    rect rgb(238, 237, 254)
+    rect rgb(175, 169, 236)
     B-->>F: 200 OK + Set-Cookie: jwt (httpOnly)
     F->>F: React Query invalidates "authUser"
     F->>B: GET /api/auth/me (cookie sent automatically)
     end
-    rect rgb(225, 245, 238)
+    rect rgb(93, 202, 165)
     B->>M: User.findById(decoded.userId)
     M-->>B: Returns user data
     end
-    rect rgb(238, 237, 254)
+    rect rgb(175, 169, 236)
     B-->>F: 200 OK + user object
     F-->>U: Redirects to Home page
     end
@@ -106,18 +106,18 @@ sequenceDiagram
     participant B as 🖥️ Backend
     participant M as 🗄️ MongoDB Atlas
 
-    rect rgb(238, 237, 254)
+    rect rgb(175, 169, 236)
     U->>F: Clicks "Send Friend Request"
     F->>B: POST /api/users/friend-request/:id
     end
-    rect rgb(225, 245, 238)
+    rect rgb(93, 202, 165)
     B->>B: protectRoute middleware verifies JWT
     B->>M: Check if already friends / request exists
     M-->>B: No existing request found
     B->>M: FriendRequest.create({ sender, recipient })
     M-->>B: New request saved
     end
-    rect rgb(238, 237, 254)
+    rect rgb(175, 169, 236)
     B-->>F: 201 Created
     F->>F: Invalidate "outgoingFriendReqs" query
     F-->>U: Button shows "Request Sent"
@@ -136,19 +136,19 @@ sequenceDiagram
     participant B as 🖥️ Backend
     participant S as 🎥 Stream API
 
-    rect rgb(238, 237, 254)
+    rect rgb(175, 169, 236)
     U->>F: Opens chat, clicks video call icon
     F->>B: GET /api/chat/token
     end
-    rect rgb(225, 245, 238)
+    rect rgb(93, 202, 165)
     B->>B: protectRoute middleware verifies JWT
     B->>S: generateStreamToken(userId)
     S-->>B: Returns Stream token
     end
-    rect rgb(238, 237, 254)
+    rect rgb(175, 169, 236)
     B-->>F: 200 OK + { token }
     end
-    rect rgb(250, 236, 231)
+    rect rgb(240, 153, 123)
     F->>S: StreamVideoClient.connect(user, token)
     S-->>F: Connection established
     F->>S: call.join({ create: true })
